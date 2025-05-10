@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Planner</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <nav class="sidebar">
+            <button class="sidebar-toggle" id="sidebarToggle">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <div class="logo">
+                <i class="fas fa-calendar-check"></i>
+                <span>Task Planner</span>
+            </div>
+            <ul class="nav-links">
+                <li class="active" data-page="home">
+                    <i class="fas fa-home"></i>
+                    <span>Home</span>
+                </li>
+                <li data-page="calendar">
+                    <i class="fas fa-calendar-alt"></i>
+                    <span>Calendar</span>
+                </li>
+                <li data-page="completed">
+                    <i class="fas fa-check-circle"></i>
+                    <span>Completed</span>
+                </li>
+                <li data-page="settings">
+                    <i class="fas fa-cog"></i>
+                    <span>Settings</span>
+                </li>
+            </ul>
+        </nav>
+
+        <main class="main-content">
+            <div class="page active" id="home">
+                <div class="welcome-section">
+                    <h1>Welcome, <span id="userName">Friend</span>!</h1>
+                    <div class="name-input-container">
+                        <input type="text" id="nameInput" placeholder="Enter your name">
+                        <button id="updateNameBtn">Update</button>
+                    </div>
+                    <button class="edit-name-btn" onclick="showNameInput()" style="display: none;">
+                        <i class="fas fa-edit"></i> Edit Name
+                    </button>
+                </div>
+                <div class="date-display"></div>
+                <div class="tasks-container">
+                    <div class="tasks-list"></div>
+                    <button class="add-task-btn">
+                        <i class="fas fa-plus"></i> Add Task
+                    </button>
+                </div>
+            </div>
+
+            <div class="page" id="calendar">
+                <h1>Calendar</h1>
+                <div class="calendar-container">
+                    <div class="calendar-header">
+                        <button class="prev-month"><i class="fas fa-chevron-left"></i></button>
+                        <h2 class="current-month"></h2>
+                        <button class="next-month"><i class="fas fa-chevron-right"></i></button>
+                    </div>
+                    <div class="calendar-grid"></div>
+                </div>
+            </div>
+
+            <div class="page" id="completed">
+                <div class="completed-header">
+                    <h1>Completed Tasks</h1>
+                    <div class="growth-analysis">
+                        <div class="analysis-card">
+                            <h3>Task Completion Rate</h3>
+                            <div class="progress-circle">
+                                <div class="progress-value">0%</div>
+                            </div>
+                            <p class="analysis-desc">Your completion rate for this month</p>
+                        </div>
+                        <div class="analysis-card">
+                            <h3>Productivity Streak</h3>
+                            <div class="streak-count">0 days</div>
+                            <p class="analysis-desc">Current streak of completing tasks</p>
+                        </div>
+                        <div class="analysis-card">
+                            <h3>Total Tasks Completed</h3>
+                            <div class="total-count">0</div>
+                            <p class="analysis-desc">Tasks completed this month</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="completed-tasks"></div>
+            </div>
+
+            <div class="page" id="settings">
+                <h1>Settings</h1>
+                <div class="settings-container">
+                    <div class="setting-item">
+                        <span>Dark Mode</span>
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="darkMode">
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                    
+                    <div class="setting-item wallpaper-settings">
+                        <div class="setting-header">
+                            <span>Wallpaper</span>
+                            <input type="file" id="wallpaperInput" accept="image/*" style="display: none;">
+                            <button class="upload-btn" onclick="document.getElementById('wallpaperInput').click()">
+                                <i class="fas fa-upload"></i> Upload Image
+                            </button>
+                        </div>
+                        
+                        <div id="wallpaperControls" class="wallpaper-controls" style="display: none;">
+                            <div class="control-group">
+                                <label>Transparency</label>
+                                <input type="range" id="transparencySlider" min="0" max="100" value="100">
+                                <span id="transparencyValue">100%</span>
+                            </div>
+                            
+                            <div class="control-group">
+                                <label>Position</label>
+                                <select id="wallpaperPosition">
+                                    <option value="center">Center</option>
+                                    <option value="cover">Cover</option>
+                                    <option value="contain">Contain</option>
+                                    <option value="repeat">Repeat</option>
+                                </select>
+                            </div>
+                            
+                            <div class="control-group">
+                                <label>Blur Effect</label>
+                                <input type="range" id="blurSlider" min="0" max="20" value="0">
+                                <span id="blurValue">0px</span>
+                            </div>
+                            
+                            <div class="wallpaper-actions">
+                                <button id="resetWallpaper" class="danger-btn">
+                                    <i class="fas fa-trash"></i> Remove Wallpaper
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html> 
